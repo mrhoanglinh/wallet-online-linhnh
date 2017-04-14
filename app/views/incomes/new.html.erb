@@ -1,0 +1,39 @@
+
+
+	<%= form_for @income, :html => {:class => "form-horizontal center"} do |f| %>	
+
+		<h2>New Income</h2>
+
+		<div class="form-group">
+		  <%= f.label :amount, "Amount:", :class => 'control-label col-lg-2' %></br>
+		  <div class="col-lg-4">
+	        <%= f.text_field :amount, :class => 'form-control' %>
+	      </div>
+		</div>		
+
+		<div class="form-group">
+		  <%= f.label :created_at, "Issued At:", :class => 'control-label col-lg-2' %></br>
+		  <div class="col-lg-4">
+	        <%= f.date_select :created_at, :class => 'form-control' %>
+	      </div>
+		</div>	
+
+		 <div class="form-group">
+		    <%= f.label :categories, :class => 'control-label col-lg-2' %>
+		    <div class="col-lg-10">
+		      <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) do |c| %>
+		          <%= c.label %>
+		          <span style="margin-left: 5px; position:relative;"> <%= c.check_box %> </span>
+		          <br>
+		      <% end %>
+		    </div>
+  		</div>
+
+		<div class="form-group">
+	      <div class="col-lg-offset-2 col-lg-4">
+			<%= f.submit "Create Income", :class => "btn btn-default btn-primary" %>
+			<%= link_to "Cancel", incomes_path ,:class => 'btn btn-default' %>
+		  </div>
+		</div>
+	<% end %>
+

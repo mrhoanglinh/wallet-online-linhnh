@@ -1,0 +1,39 @@
+<div class="row">
+  <%= form_tag root_path do %>
+      <div class="col-md-3">      
+        <%= select_tag 'month',
+                       options_for_select(
+                       	Date::MONTHNAMES[Date.today.month]
+                               
+                       ),
+                       class: 'form-control' %>                 
+      </div>
+
+      <!-- For now I just allow user to choose current year -->
+      <div class="col-md-3">
+        <%= select_tag 'year', options_for_select([[Time.now.year, Time.now.year]]), class: 'form-control'%>
+      </div>
+
+      <%= submit_tag 'Get Data', class: 'btn btn-default btn-primary' %>
+  <% end %>
+</div>
+
+<div class="row" style="height: 30px"></div>
+
+<%= high_chart("dashboard", @chart) %>
+
+<div class="row" style="height: 30px"></div>
+
+<script>
+    $(document).ready(function(){
+        (function() {
+            "use strict";
+            if (window.location && window.location.hash) {
+                if (window.location.hash === '#_=_') {
+                    window.location.hash = '';
+                    history.pushState('', document.title, window.location.pathname); // nice and clean
+                }
+            }
+        }());
+    });
+</script>
