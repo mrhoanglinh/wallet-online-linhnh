@@ -14,7 +14,8 @@ class IncomesController < ApplicationController
 	end
 
 	def create
-	  @income = Income.new(income_params)
+	  #@income = Income.new(income_params)
+	  @income = current_user.incomes.new(income_params)
 	  if @income.save
 		redirect_to incomes_path, :notice => "Income has been saved!"
 	  else

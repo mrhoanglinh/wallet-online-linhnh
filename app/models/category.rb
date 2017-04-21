@@ -5,5 +5,7 @@ class Category < ApplicationRecord
 	has_many :income_categories
 	has_many :incomes, :through => :income_categories
 
+	belongs_to :user
+
 	validates :name, uniqueness: true, presence: { message: "must be given please" }
 end

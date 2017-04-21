@@ -25,7 +25,8 @@ class CategoriesController < ApplicationController
 	end
 
 	def create
-		@category = Category.new(category_params)
+		#@category = Category.new(category_params)
+		@category = current_user.categories.new(category_params)
 		if @category.save
 			redirect_to categories_path, :notice => "Category has been saved!"
 		else
@@ -38,11 +39,11 @@ class CategoriesController < ApplicationController
 		redirect_to categories_path, :notice => "Category has been delete!"
 	end
 
-	private
+	private	  
 	  def set_category
         @category = Category.find(params[:id])
       end
-
+    
 	  def category_params
 	    params.require(:category).permit(:name)
 	  end

@@ -14,7 +14,8 @@ class CostsController < ApplicationController
 	end
 
 	def create
-	  @cost = Cost.new(cost_params)
+	  #@cost = Cost.new(cost_params)
+	  @cost = current_user.costs.new(cost_params)
 	  if @cost.save
 		redirect_to costs_path, :notice => "Cost has been saved!"
 	  else
